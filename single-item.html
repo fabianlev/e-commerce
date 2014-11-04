@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>MyShop - Mon compte</title>
+    <meta name="description" content="#">
+    <meta name="keywords" content="#">
+    <meta name="author" content="">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animate.min.css" rel="stylesheet">
+    <link href="css/ddlevelsmenu-base.css" rel="stylesheet">
+    <link href="css/ddlevelsmenu-topbar.css" rel="stylesheet">
+    <link href="css/jquery.countdown.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">   
+    <link href="css/style.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="#">
+  </head>
+
+  <body>
+
+    <!-- Logo & Navigation starts -->
+
+    <div class="header">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2 col-sm-2">
+            <!-- Logo -->
+            <div class="logo">
+            <h1><a href="index.html">MyShop</a></h1>
+            </div>
+          </div>
+          <div class="col-md-6 col-sm-5">
+            <!-- Navigation menu -->
+            <div class="navi">
+              <div id="ddtopmenubar" class="mattblackmenu">
+                <ul>
+                  <li><a href="#">Accueil</a></li>
+                  <li><a href="#" rel="ddsubmenu1">Compte</a>
+                    <ul id="ddsubmenu1" class="ddsubmenustyle">
+                      <li><a href="account.html">Mon compte</a></li>
+                      <li><a href="viewcart.html">Voir le panier</a></li>
+                      <li><a href="checkout.html">Payer</a></li>
+                      <li><a href="orderhistory.html">Historique d'achat</a></li>
+                      <li><a href="editprofile.html">Editer mon profil</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#" rel="ddsubmenu1">Magasin</a>
+                    <ul id="ddsubmenu1" class="ddsubmenustyle">
+                      <li><a href="items.html">Desktop</a></li>
+                      <li><a href="items.html">Laptop</a></li>
+                      <li><a href="items.html">NetBook</a></li>
+                      <li><a href="items.html">All-In-One PC</a></li>
+                      <li><a href="items.html">Alienware</a></li>
+                    </ul>
+                  </li>                       
+                  <li><a href="contactus.html">Contact</a></li>
+                </ul>
+              </div>
+            </div>
+            <!-- Dropdown NavBar -->
+            <div class="navis"></div>                   
+          </div>
+
+          <div class="col-md-4 col-sm-5">
+          <div class="kart-links">
+          <a href="login.html">Connexion</a> 
+          <a href="register.html">Inscription</a>
+          <a data-toggle="modal" href="#shoppingcart"><i class="fa fa-shopping-cart"></i> 3 Objets - 300  €</a>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      
+      <!-- Logo & Navigation ends -->
+     
+      <!-- Page title -->
+      <div class="page-title">
+         <div class="container">
+            <h2><i class="fa fa-desktop color"></i> Nom Catégorie</h2>
+            <hr />
+         </div>
+      </div>
+      <!-- Page title -->
+      
+      <!-- Page content -->
+      
+      <div class="shop-items">
+         <div class="container">
+            
+            <div class="row">
+               
+               <div class="col-md-9 col-md-push-3">
+               
+                  <!-- Breadcrumb -->
+                 <ul class="breadcrumb">
+                   <li><a href="index.html">Accueil</a> <span class="divider"></span></li>
+                   <li><a href="items.html">Catalogue</a> <span class="divider"></span></li>
+                   <li>Nom Objet</li>
+                 </ul>
+               
+                  <div class="single-item">
+                      <div class="row">
+                        <div class="col-md-4 col-xs-5">
+
+                          <div class="item-image">
+                              <img src="img/items/2.png" alt="" />
+                          </div>
+                              
+
+                        </div>
+                        <div class="col-md-5 col-xs-7">
+                          <!-- Title -->
+                            <h4>Apple iPhone 5G</h4>
+                            <h5><strong>Prix : 500€</strong></h5>
+                            <p><strong>Frais de Port</strong> : Offert</p>
+                            <p><strong>Marque</strong> : Apple</p>
+                            <p><strong>Modèle</strong> : 5G</p>
+                            
+                                 
+                                 <div class="form-group">
+                                    <!-- Dropdown menu -->
+                                    <select class="form-control">
+                                      <option>Couleur</option>
+                                      <option>Rouge</option>
+                                      <option>Bleu</option>
+                                      <option>Vert</option>
+                                      <option>Orange</option>
+                                    </select>
+                                 </div>
+
+                                    
+                                     <!-- Quantity and add to cart button -->
+                                    
+                                    <div class="input-group">
+                                       <input type="text" class="form-control" placeholder="2" value="2">
+                                       <span class="input-group-btn">
+                                         <button class="btn btn-info" type="button">Go!</button>
+                                       </span>
+                                     </div><!-- /input-group -->
+
+                                     <div class="sep"></div>
+
+                                    <!-- Share button -->
+                            
+                        </div>
+                      </div>
+                    </div>
+
+            <br />
+                    
+                    <!-- Description, specs and review -->
+
+                    <ul id="myTab" class="nav nav-tabs">
+                      <!-- Use uniqe name for "href" in below anchor tags -->
+                      <li class="active"><a href="#tab1" data-toggle="tab">Description</a></li>
+                      <li><a href="#tab2" data-toggle="tab">Spécificités</a></li>
+                    </ul>
+
+                    <!-- Tab Content -->
+                    <div id="myTabContent" class="tab-content">
+                      <!-- Description -->
+                      <div class="tab-pane fade in active" id="tab1">
+                        <h5><strong>Apple iPhone 5G</strong></h5>
+                        <p>Nulla facilisi. Sed justo dui, scelerisque ut consectetur vel, eleifend id erat. Morbi auctor adipiscing tempor. Phasellus condimentum rutrum aliquet. Quisque eu consectetur erat. Proin rutrum, erat eget posuere semper, <em>arcu mauris posuere tortor</em>, in commodo enim magna id massa. Suspendisse potenti. Aliquam erat volutpat. Maecenas quis tristique turpis. Nulla facilisi. Duis sed velit at <a href="#">magna sollicitudin cursus</a> ac ultrices magna. Aliquam consequat, purus vitae auctor ullamcorper, sem velit convallis quam, a pharetra justo nunc et mauris. Vivamus diam diam, fermentum sed dapibus eget, egestas sed eros. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                        <h6><strong>Features</strong></h6>
+                        <ul>
+                        <li>Etiam adipiscing posuere justo, nec iaculis justo dictum non</li>
+                        <li>Cras tincidunt mi non arcu hendrerit eleifend</li>
+                        <li>Aenean ullamcorper justo tincidunt justo aliquet et lobortis diam faucibus</li>
+                        <li>Maecenas hendrerit neque id ante dictum mattis</li>
+                        <li>Vivamus non neque lacus, et cursus tortor</li>
+                        </ul>
+                      </div>
+
+                      <!-- Sepcs -->
+                      <div class="tab-pane fade" id="tab2">
+                        
+                        <h5><strong>Product Specs:</strong></h5>
+                        <table class="table table-striped">
+                          <tbody>
+                            <tr>
+                              <td><strong>Nom</strong></td>
+                              <td>Apple iPhone 5G</td>
+                            </tr>
+                            <tr>
+                              <td><strong>Marque</strong></td>
+                              <td>Apple</td>
+                            </tr>
+                            <tr>
+                              <td><strong>Modèle</strong></td>
+                              <td>5G</td>
+                            </tr>
+                            <tr>
+                              <td><strong>Mémoire</strong></td>
+                              <td>2Go RAM</td>
+                            </tr>
+                            <tr>
+                              <td><strong>Stockage</strong></td>
+                              <td>16Go, 32Go, 64Go</td>
+                            </tr>
+                            <tr>
+                              <td><strong>Processeur</strong></td>
+                              <td>Apple 1.25GHz Processeur</td>
+                            </tr>
+                            <tr>
+                              <td><strong>Batterie</strong></td>
+                              <td>30 Heure d'autonomie</td>
+                            </tr>                                                                                                
+                          </tbody>
+                        </table>
+
+                      </div>
+
+                    </div>
+               
+               </div>
+               
+               <div class="col-md-3 col-md-pull-9">
+                  <div class="sidey">
+                     <ul class="nav">
+                         <li><a href="index.html"><i class="fa fa-home"></i> &nbsp;Accueil</a>
+                         <li><a href="#"><i class="fa fa-mobile-phone"></i> &nbsp;Catégorie 1</a>
+                             <ul>
+                                 <li><a href="items.html">Sous-Catégorie 1</a></li>
+                                 <li><a href="items.html">Sous-Catégorie 2</a></li>
+                                 <li><a href="items.html">Sous-Catégorie 3</a></li>
+                                 <li><a href="items.html">Sous-Catégorie 4</a></li>
+                             </ul>
+                         </li>
+                         <li><a href="#"><i class="fa fa-laptop"></i> &nbsp;Catégorie 1</a>
+                             <ul>
+                                 <li><a href="items.html">Sous-Catégorie 1</a></li>
+                                 <li><a href="items.html">Sous-Catégorie 2</a></li>
+                                 <li><a href="items.html">Sous-Catégorie 3</a></li>
+                                 <li><a href="items.html">Sous-Catégorie 4</a></li>
+                             </ul>
+                         </li>
+                         <li><a href="#"><i class="fa fa-briefcase"></i> &nbsp;Catégorie 2</a>
+                             <ul>
+                                 <li><a href="items.html">Sous-Catégorie 1</a></li>
+                                 <li><a href="items.html">Sous-Catégorie 2</a></li>
+                                 <li><a href="items.html">Sous-Catégorie 3</a></li>
+                                 <li><a href="items.html">Sous-Catégorie 4</a></li>
+                             </ul>
+                         </li>
+                         <li><a href="#"><i class="fa fa-camera"></i> &nbsp;Catégorie 3</a>
+                             <ul>
+                                 <li><a href="items.html">Sous-Catégorie 1</a></li>
+                                 <li><a href="items.html">Sous-Catégorie 2</a></li>
+                                 <li><a href="items.html">Sous-Catégorie 3</a></li>
+                                 <li><a href="items.html">Sous-Catégorie 4</a></li>
+                             </ul>
+                         </li>
+                     </ul>
+                  </div>
+               </div>
+            </div>
+            </div>
+         </div>
+      </div>
+     
+      
+    <!-- Catchy starts -->
+    <div class="catchy blocky">
+      <div class="catchy-inner1">
+        <div class="catchy-inner2">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-5">
+                <div class="catchy-subscribe">
+                <h3>Rejoignez-nous !</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi architecto dicta doloremque ducimus eius est ex expedita hic ipsam iste iusto labore mollitia necessitatibus optio tempore ut voluptas, voluptatibus voluptatum.</p>
+                <br />
+                <form class="form-inline" role="form">
+                  <div class="form-group">
+                    <input type="text" class="form-control " id="exampleInputEmail2" placeholder="Entrez votre adresse mail">
+                  </div>
+                  <button type="submit" class="btn btn-danger">S'inscrire</button>
+                </form>
+
+                </div>
+              </div>
+              <div class="col-md-7">
+
+                <div class="report">
+                  <div class="report-bor">
+                    <div class="row">
+                      <!-- Report data starts -->
+                      <div class="col-md-4 col-sm-4">
+                        <div class="report-data">
+                          <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                              <!-- Icon -->
+                              <div class="report-icon"><i class="fa fa-group color"></i></div>
+                            </div>
+                            <div class="col-md-8 col-md-8 col-xs-8">
+                              <!-- Details -->
+                              <span class="report-big color">40,000</span> <span>Membres</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Report data ends -->
+
+                      <!-- Report data starts -->
+                      <div class="col-md-4 col-sm-4">
+                        <div class="report-data">
+                          <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                              <div class="report-icon"><i class="fa fa-calendar color"></i></div>
+                            </div>
+                            <div class="col-md-8 col-md-8 col-xs-8">
+                              <span>Depuis</span><span class="report-big color">1857</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Report data ends -->
+
+                      <!-- Report data starts -->
+                      <div class="col-md-4 col-sm-4">
+                        <div class="report-data">
+                          <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                              <div class="report-icon"><i class="fa fa-android color"></i></div>
+                            </div>
+                            <div class="col-md-8 col-md-8 col-xs-8">
+                              <span class="report-big color">30,000</span> <span>Revenue</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <hr class="hidden-xs">
+
+                    <div class="row">
+
+                      <!-- Report data starts -->
+                      <div class="col-md-4 col-sm-4">
+                        <div class="report-data">
+                          <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                              <div class="report-icon"><i class="fa fa-building-o color"></i></div>
+                            </div>
+                            <div class="col-md-8 col-md-8 col-xs-8">
+                              <span class="report-big color">150 +</span> <span>Companies</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Report data ends -->
+
+                      <!-- Report data starts -->
+                      <div class="col-md-4 col-sm-4">
+                        <div class="report-data">
+                          <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                              <!-- Icon -->
+                              <div class="report-icon"><i class="fa fa-signal color"></i></div>
+                            </div>
+                            <div class="col-md-8 col-md-8 col-xs-8">
+                              <!-- Details -->
+                              <span class="report-big color">50.60%</span> <span>de Profit</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Report data ends -->
+
+                      <!-- Report data starts -->
+                      <div class="col-md-4 col-sm-4">
+                        <div class="report-data">
+                          <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-4">
+                              <div class="report-icon"><i class="fa fa-truck color"></i></div>
+                            </div>
+                            <div class="col-md-8 col-md-8 col-xs-8">
+                              <span class="report-big color">100 +</span> <span>Employés</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>      
+    <!-- Catchy ends -->
+      
+
+      
+          <!-- Footer starts -->
+    <footer>
+      <div class="container">
+      
+        <div class="row">
+
+          <div class="col-md-4 col-sm-4">
+            <div class="fwidget">
+            
+              <h4>Oslon de<span class="color">'</span> Techno</h4>
+              <hr />
+              <p>Duis leo risus, vehicula luctus nunc.  Quiue rhoncus, a sodales enim arcu quis turpis. Duis leo risus, condimentum ut posuere ac, vehicula luctus nunc.  Quisque rhoncus, a sodales enim arcu quis turpis.</p>
+              
+              <div class="social">
+                <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
+                <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
+                <a href="#" class="google-plus"><i class="fa fa-google-plus"></i></a>
+                <a href="#" class="linkedin"><i class="fa fa-linkedin"></i></a>
+                <a href="#" class="pinterest"><i class="fa fa-pinterest"></i></a>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-4">
+            <div class="fwidget">
+            <h4>Categories</h4>
+            <hr />
+            <ul>
+              <li><a href="#">Sed eu leo orci, condimentum gravida metus</a></li>
+              <li><a href="#">Etiam at nulla ipsum, in rhoncus purus</a></li>
+              <li><a href="#">Fusce vel magna faucibus felis dapibus facilisis</a></li>
+              <li><a href="#">Vivamus scelerisque dui in massa</a></li>
+              <li><a href="#">Pellentesque eget adipiscing dui semper</a></li>
+            </ul>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-4">
+            <div class="fwidget">
+            
+            <h4>Nous contacter ?</h4>
+            <hr />
+            <div class="address">
+              <p><i class="fa fa-home color contact-icon"></i> Rue des Laderies 105, </p>
+              <p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 7031 Villers-Saint-Ghislain</p>
+              <p><i class="fa fa-phone color contact-icon"></i> +32482 26 89 11</p>
+              <p><i class="fa fa-envelope color contact-icon"></i> <a href="mailto:contact@myshop.be">contact@myshop.be</a></p>
+            </div>
+            
+            </div>
+          </div>
+
+        </div>
+
+        <hr />
+        
+        <div class="copy text-center">
+          Copyright 2013 &copy; - Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, laborum.
+        </div>
+      </div>
+    </footer>
+    <!-- Footer ends -->
+    
+    <!-- Scroll to top -->
+    <span class="totop"><a href="#"><i class="fa fa-chevron-up"></i></a></span> 
+
+      <!-- Modal Panier -->
+    <div class="modal fade" id="shoppingcart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Votre Panier</h4>
+        </div>
+        <div class="modal-body">
+
+        <!-- Items table -->
+        <table class="table table-striped table-hover">
+          <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Quantité</th>
+            <th>Prix</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <td><a href="single-item.html">HTC One</a></td>
+            <td>2</td>
+            <td>250 €</td>
+          </tr>
+          <tr>
+            <td><a href="single-item.html">Apple iPhone</a></td>
+            <td>1</td>
+            <td>502 €</td>
+          </tr>
+          <tr>
+            <td><a href="single-item.html">Galaxy Note</a></td>
+            <td>4</td>
+            <td>1303 €</td>
+          </tr>
+          <tr>
+            <th></th>
+            <th>Total</th>
+            <th>2405 €</th>
+          </tr>
+          </tbody>
+        </table>
+
+        </div>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Continuer mes achats</button>
+        <a href="./checkout.html" type="button" class="btn btn-info">Payer</a>
+        </div>
+      </div>
+      </div>
+    </div><!-- /Modal Panier -->
+    
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/ddlevelsmenu.js"></script>  
+    <script src="js/jquery.countdown.min.js"></script>  
+    <script src="js/jquery.navgoco.min.js"></script>
+    <script src="js/filter.js"></script>      
+    <script src="js/respond.min.js"></script>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/custom.js"></script>
+  </body> 
+</html>
