@@ -1,10 +1,10 @@
-<?php 
+<?php
 class Arrays implements IteratorAggregate, ArrayAccess {
 
-	private $items;
+	protected $items;
 
 	public function __construct(array $items){
-		$this->items = $items
+		$this->items = $items;
 	}
 
 	public function get($key){
@@ -37,16 +37,20 @@ class Arrays implements IteratorAggregate, ArrayAccess {
 		$this->items[$key] = $value;
 	}
 
+	public function delete($key){
+		unset($this->items[$key]);
+	}
+
 	public function lists($key, $value){
 		$results = array();
 		foreach ($this->items as $item) {
-			$results[$item[$key]] = $value
+			$results[$item[$key]] = $value;
 		}
 		return new Arrays($results);
 	}
 
 	public function sort($key){
-		return new Arrays(sort($key));
+		return new Arrays((array)sort($key));
 	}
 
 	public function extract($key){
@@ -70,7 +74,7 @@ class Arrays implements IteratorAggregate, ArrayAccess {
 
 
 	public function offsetSet($offset, $value) {
-        $this->set($offset, $value)
+        $this->set($offset, $value);
     }
 
     public function offsetExists($offset) {
@@ -87,9 +91,7 @@ class Arrays implements IteratorAggregate, ArrayAccess {
         return $this->get($offset);
     }
 
-    public function getItegator(){
+    public function getIterator(){
     	return new ArrayIterator($this->items);
     }
 }
-
-?>
