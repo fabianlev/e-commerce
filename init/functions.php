@@ -1,6 +1,5 @@
 <?php
-function truncate($string, $max_length = 30, $replacement = '', $trunc_at_space = false)
-{
+function truncate($string, $max_length = 30, $replacement = '', $trunc_at_space = false){
     $max_length -= strlen($replacement);
     $string_length = strlen($string);
 
@@ -92,4 +91,20 @@ function paginate($url, $link, $total, $current, $adj = 3) {
     }
 
     return ($pagination);
+}
+
+function noFilter($url){
+    $tmpLink = str_replace('&price=ASC', '', $url);
+    $tmpLink = str_replace('&price=DESC', '', $tmpLink);
+    $tmpLink = str_replace('&name=ASC', '', $tmpLink);
+    return str_replace('&name=DESC', '', $tmpLink);
+}
+
+function filter($url, $filter , $order='ASC'){
+    if($order != ('ASC' || 'DESC')){
+        return false;
+    }
+    $fromFilter = $order == 'ASC' ? 'DESC' : 'ASC';
+    $tmp = str_replace("&$filter=$order", '', $url);
+    return str_replace("&$filter=$fromFilter", '', $tmp) . "&$filter=$order";
 }

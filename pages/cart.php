@@ -1,7 +1,4 @@
-<?php
-// 34:51
-$keys = array_keys($products = $session->get('cart'));
-$items = $db->find('items', 'all', ['conditionIn' => ['id' => implode(', ', $keys)]]);
+<?php $items = $cart->getItems();
 if(isset($_GET['del'])) {
     $quantity = isset($_GET['quantity']) ? $_GET['quantity'] : 1;
     $cart->remove($_GET['del'], $quantity);
@@ -47,7 +44,7 @@ if(isset($_POST['cart']['quantity'])){
                                     <td><a href="./?rub=item&id=<?= $item->id; ?>"><img src="<?= COMIC . $item->img; ?>" alt="" class="img-responsive"/></a></td>
                                     <td>
                                         <div class="input-group">
-                                            <input type="text" name="cart[quantity][<?= $item->id; ?>]" class="form-control" value="<?= $products[$item->id] ?>">
+                                            <input type="text" name="cart[quantity][<?= $item->id; ?>]" class="form-control" value="<?= $_SESSION['cart'][$item->id] ?>">
                                         </div>
                                     </td>
                                     <td><?= number_format($item->price, 2); ?> €</td>
@@ -74,9 +71,11 @@ if(isset($_POST['cart']['quantity'])){
                             <div class="span4 offset8">
                                 <div class="pull-right btn-group">
                                     <button class="btn btn-success" type="submit"><i class="fa fa-refresh"></i> Recalculer</button>
-                                    <a href="./?rub=cart&del=all" class="btn btn-danger">Vider le panier</a>
-                                    <a href="./?rub=items" class="btn btn-info">Continuer mes Achats</a>
-                                    <a href="./?rub=checkout" class="btn btn-warning">Payer</a>
+                                    <a href="./?rub=cart&del=all" class="btn btn-danger"><i class="fa fa-remove"></i> Vider le panier</a>
+                                    <a href="./?rub=items" class="btn btn-info"><i class="fa fa-reply "></i> Continuer mes Achats</a>
+                                    <?php if(isset($_SESSION['Auth']) && !empty($_SESSION['Auth']['id'])) : ?>
+                                        <a href="./?rub=checkout" class="btn btn-warning"><i class="fa fa-shopping-cart "></i> Payer</a>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>

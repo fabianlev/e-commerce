@@ -3,19 +3,24 @@ class Session implements IteratorAggregate, ArrayAccess {
 	public $session;
 	private $started;
 	private $db;
+	private $key = 'gfHG543hGFojkjokL';
 
-	public function __construct($db, $auto = true){
+	public function __construct($db, $infos = false, $auto = true){
 		$this->started = isset($_SESSION);
 		if (!$this->started && $auto) {
 			$this->start();
 		}
 		$this->db = $db;
 		$this->session = $_SESSION;
+		if($infos){
+			$this->set('', $infos);
+		}
 	}
 
 	private function start(){
 		if(!$this->started){
 			session_start();
+			session_regenerate_id();
 			$this->started = true;
 		}
 	}
@@ -31,27 +36,31 @@ class Session implements IteratorAggregate, ArrayAccess {
 		}
 	}
 
-	public function login(){
-		$data = $_POST;
-		$return = array();
+	public function login($data = array()){
+		if(empty($data)){
+			$data = $_POST;
+		}
 		if(isset($_POST['password'])) {
 			$password = $this->encrypt($_POST['password']);
 		}
-		$data = $this->db->find('users', 'first', ['conditions' => ['mail' => $data['mail'], 'password' => $password, 'active' => 1]]);
+		$data = $this->db->find('users', 'first', ['conditions' => ['mail' => $data['mail'], 'password' => $password]]);
 		if(!empty($data)) {
-			foreach($data as $key => $value){
-				if($key == 'password') {
-					$value = $this->decrypt($value);
+			if($data->active){
+				session_regenerate_id();
+				foreach($data as $key => $value){
+					if($key == 'password') {
+						$value = $this->decrypt($value);
+					}
+					$_SESSION['Auth'][$key] = $value;
 				}
-				$_SESSION['Auth'][$key] = $value;
+				$_SESSION['flash'] = array('type' => 'success', 'message' => "Bienvenue {$_SESSION['Auth']['name']}  {$_SESSION['Auth']['firstname']}, vous êtes maintenant connecté");
+			} else {
+				$_SESSION['flash'] = array('type' => 'danger', 'message' => "Merci de bien vouloir valider votre compte avant de vous connecter");
 			}
-			$return['error'] = false;
-			$return['message'] = "Bienvenue " . $_SESSION['Auth']['name'] . ' ' . $_SESSION['Auth']['firstname'];
+			
 		} else {
-			$return['error'] = true;
-			$return['message'] = 'Impossible de vous connecter';
+			$_SESSION['flash'] = array('type' => 'danger', 'message' => "L'adresse mail ou le mot de passe est incorrect.");
 		}
-		return $return;
 	}
 
 	public function set($key, $value){
@@ -91,15 +100,11 @@ class Session implements IteratorAggregate, ArrayAccess {
 		return new ArrayIterator($this->session);
 	}
 
-	function encrypt($value) {
-		$cryptKey = 'gfHG543hGFojkjokL';
-		$encoded = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($cryptKey), $value, MCRYPT_MODE_CBC, md5(md5($cryptKey))));
-		return $encoded;
+	public function encrypt($value) {
+		return base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($this->key), $value, MCRYPT_MODE_CBC, md5(md5($this->key))));
 	}
 
-	function decrypt($value) {
-		$cryptKey = 'gfHG543hGFojkjokL';
-		$decoded = rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($cryptKey), base64_decode($value), MCRYPT_MODE_CBC, md5(md5($cryptKey))), "\0");
-		return $decoded;
+	public function decrypt($value) {
+		return rtrim(mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($this->key), base64_decode($value), MCRYPT_MODE_CBC, md5(md5($this->key))), "\0");
 	}
 } 

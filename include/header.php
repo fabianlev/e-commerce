@@ -44,15 +44,15 @@
                                         <li><a href="./?rub=cart">Voir le panier</a></li>
                                         <li><a href="./?rub=checkout">Payer</a></li>
                                         <li><a href="./?rub=orderhistory">Historique d'achat</a></li>
-                                        <li><a href="./?rub=editprofile">Editer mon profil</a></li>
+                                        <li><a href="./?rub=editaccount">Editer mon profil</a></li>
                                     </ul>
                                 </li>
                             <?php endif; ?>
                             <li><a href="./#" rel="ddsubmenu1">Notre catalogue</a>
                                 <ul id="ddsubmenu1" class="ddsubmenustyle">
                                     <li><a href="./?rub=items">Tout les comics</a></li>
-                                    <li><a href="./?rub=items&category=1">Marvel Comics</a></li>
-                                    <li><a href="./?rub=items&category=2">DC Comics</a></li>
+                                    <li><a href="./?rub=items&amp;category=1">Marvel Comics</a></li>
+                                    <li><a href="./?rub=items&amp;category=2">DC Comics</a></li>
                                 </ul>
                             </li>
                             <li><a href="./?rub=contact">Contact</a></li>

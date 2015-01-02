@@ -1,5 +1,6 @@
 <?php if(isset($_SESSION['Auth']['id'])): ?>
-    <?php $user = $db->find('users', 'first', ['conditions' => ['id' => $_SESSION['Auth']['id']]]); ?>
+    <?php $user = $db->find('users', 'first', ['conditions' => ['id' => $_SESSION['Auth']['id']]]); 
+    $order = $db->find('orders', 'all', ['conditions' => ['user_id'=> $_SESSION['Auth']['id']]]); ?>
     <div class="page-title">
         <div class="container">
             <h2><i class="fa fa-desktop color"></i> Mon Compte <small><?= $user->name . ' ' . $user->firstname ?></small></h2>
@@ -30,45 +31,16 @@
                             <?php endif; ?>
                         </address>
                     </div>
-
-                    <hr />
-
-                    <h4>Mes derniers achats</h4>
-
-                    <table class="table table-striped table-hover tcart">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>ID</th>
-                                <th>Nom</th>
-                                <th>Prix</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>25/08/14</td>
-                                <td>4423</td>
-                                <td>HTC One</td>
-                                <td>530 €</td>
-                                <td>Completé</td>
-                            </tr>
-                            <tr>
-                                <td>15/02/14</td>
-                                <td>6643</td>
-                                <td>Sony Xperia</td>
-                                <td>330 €</td>
-                                <td>Envoyé</td>
-                            </tr>
-                            <tr>
-                                <td>14/08/14</td>
-                                <td>1283</td>
-                                <td>Nokia Asha</td>
-                                <td>230 €</td>
-                                <td>En cours</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <?php if(!empty($order)):
+                        $somme = 0;
+                        foreach ($order as $key => $value) {
+                            $somme += $value->amount;
+                        } ?>
+                        <hr />
+                   
+                        <h4>Vous avez effectué <?= count($order) == 1 ? count($order) . ' achat' : count($order) . ' achats'; ?> pour la somme totale de <?= $somme; ?> € </h4>
+                    <?php endif; ?>
+                    
                 </div>
             </div>
         </div>

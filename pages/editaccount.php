@@ -10,6 +10,11 @@
 
 <?php if(isset($_SESSION['Auth']['id'])): ?>
     <?php $user = $db->find('users', 'first', ['conditions' => ['id' => $_SESSION['Auth']['id']]]); ?>
+
+    <div class="container">
+        <div class="alert alert-warning">Si ces informations sont différentes des informations de votre compte paypal, elles seront automatiquement mise à jour avec les informations de Paypal.</div>
+    </div>
+
     <div class="page-title">
          <div class="container">
             <h2><i class="fa fa-desktop color"></i> Mon Compte <small><?= $user->name . ' ' . $user->firstname; ?></small></h2>

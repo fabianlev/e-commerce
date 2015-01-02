@@ -238,10 +238,14 @@ strong{
     -o-animation-delay: 0.5s;
 }
 
+.carousel .carousel-caption .carousel-link{
+    color: white;
+}
+
 .carousel .carousel-caption .cover {
     position: relative;
     top: 310px;
-    left: 185px;
+    left: 195px;
     height: 325px;
     z-index: -1;
 }

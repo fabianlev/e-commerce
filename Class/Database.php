@@ -1,16 +1,19 @@
 <?php
+
 class Database
 {
+
+	// TODO : Comment all the class
 
 	// pdo object.
 	private $pdo;
 
 	public function __construct()
 	{
-		$config = parse_ini_file("sql.ini");
+		require('./init/config.php');
 		$username = $config['username'];
 		$password = $config['password'];
-		$database = $config['dbname'];
+		$dbname = $config['dbname'];
 		$host = $config['host'];
 		$port = $config['port'];
 		$driver = $config['driver'];
@@ -22,7 +25,7 @@ class Database
 		);
 
 		try {
-			$this->pdo = new PDO($driver . ':host=' . $host . ';port=' . $port . ';dbname=' . $database, $username, $password, $options);
+			$this->pdo = new PDO($driver . ':host=' . $host . ';port=' . $port . ';dbname=' . $dbname, $username, $password, $options);
 		} catch (Exception $e) {
 			die('Impossible de se connecter &agrave; la base de donn&eacute;e !');
 		}
@@ -36,11 +39,7 @@ class Database
 	{
 		$query .= " LIMIT 1";
 		$result = $this->query($query);
-		if(!empty($result)){
-			return $result[0];
-		} else {
-			return '';
-		}
+		return !empty($result) ? $result[0] : '';
 	}
 
 	/**
@@ -53,11 +52,12 @@ class Database
 	{
 		$result = null;
 		try {
+			foreach ($params as $key => $value) {
+				$params[$key] = htmlentities($value, ENT_QUOTES, "UTF-8");
+			}
 			$sql = $this->pdo->prepare($query);
 			$sql->execute($params);
-			if($type === 'find') {
-				$result = $sql->fetchAll();
-			}
+			$type === 'find' ? $result = $sql->fetchAll(): null;
 			$sql->closeCursor();
 		} catch (Exception $e) {
 			die('Impossible de se connecter &agrave; la base de donn&eacute;e !');
@@ -72,20 +72,16 @@ class Database
 	 * @return bool
 	 * Need to Comments
 	 */
-	public function find($table = '', $type = 'all', $options = array())
+	public function select($table, $type = 'all', $options = array()){
+		return $this->find($table, $type, $options);
+	}
+
+	public function find($table, $type = 'all', $options = array())
 	{
-		$where = $join = $order = $limit = '';
+		$where = $join = $limit = '';
 
-		if (!isset($options['fields'])) {
-			$fields = '*';
-		} else {
-			$fields = implode(', ', $options['fields']);
-		}
-
-		if (isset($options['order'])) {
-			$order = ' ORDER BY ';
-			$order .= implode(', ', $options['order']);
-		}
+		$fields = isset($options['fields']) ? implode(', ', $options['fields']) : '*';
+		$order = isset($options['order']) ? ' ORDER BY ' . implode(', ', $options['order']) : '';
 
 		if (isset($options['conditions'])) {
 			$where = ' WHERE ';
@@ -93,34 +89,16 @@ class Database
 			foreach ($options['conditions'] as $field => $value) {
 				$cond = explode(' ', $field);
 				// Making default array with field and value
-				if (isset($cond[1])) {
-					$tmp[] = $cond[0] . ' ' . $cond[1] . '\'' . $value . '\'';
-				} else {
-					$tmp[] = $field . ' = \'' . $value . '\'';
-				}
+				$tmp[] = isset($cond[1]) ? $cond[0] . ' ' . $cond[1] . '\'' . $value . '\'' : $field . ' = \'' . $value . '\'';
 			}
-
 			// Making the where clause
-			$count = count($tmp);
-			for ($i = 0; $i < $count; $i++) {
-				// Test if element is the first i array
-				if ($i === 0) {
-					$where .= $tmp[$i];
-				} else {
-					// If not first element, adding the " AND " clause
-					$where .= ' AND ' . $tmp[$i];
-				}
-			}
+			$where .= implode(' AND ', $tmp);
 		}
 
 		if (isset($options['conditionIn'])) {
 			$where = ' WHERE ';
 			foreach ($options['conditionIn'] as $key => $value) {
-				if (!empty($value)) {
-					$where .= $key . ' IN (' . $value . ')';
-				} else {
-					$where .= 'id = 0';
-				}
+				$where .= empty($value) ? 'id = 0' : $key . ' IN (' . $value . ')';
 			}
 		}
 
@@ -132,15 +110,11 @@ class Database
 
 		if (isset($options['limit'])) {
 			$limit = ' LIMIT ';
-			if (count($options['limit']) > 1) {
-				$limit .= implode(', ', $options['limit']);
-			} else {
-				$limit .= $options['limit'];
-			}
+			$limit .= count($options['limit']) > 1 ? implode(', ', $options['limit']) : $options['limit'];
 		}
 
 		if ($type === 'count') {
-			$query = 'SELECT COUNT(*) AS count FROM ' . $table . $join . $where . $order . $limit;
+			$query = 'SELECT COUNT(*) AS count FROM ' . $table . ' AS ' . strtoupper($table) . $join . $where . $order . $limit;
 		} else {
 			$query = 'SELECT ' . $fields . ' FROM ' . $table . ' AS ' . strtoupper($table) . $join . $where . $order . $limit;
 		}
@@ -158,7 +132,7 @@ class Database
 	 * @param $table
 	 * @param $fields - Like array('fieldname' => 'value')
 	 */
-	public function insert($table, $fields = array())
+	public function insert($table, $fields)
 	{
 
 		// Manipulating fields / values
@@ -180,7 +154,7 @@ class Database
 	 * @param array $fields - Like array('fieldname' => 'new value')
 	 * @param $where - Can be Line Id or array('fieldname' => 'value', 'fieldname2' => 'value')
 	 */
-	public function update($table, $fields = array(), $where = 'id')
+	public function update($table, $fields, $where = 'id')
 	{
 		// Manipulating Fields
 		foreach ($fields as $field => $value) {
@@ -192,20 +166,10 @@ class Database
 		if (is_array($where)) {
 			foreach ($where as $field => $value) {
 				// Making default array with field and value
-				$tmp[] = $field . ' = \'' . $value . '\'';
+				$tmp[] = isset($cond[1]) ? $cond[0] . ' ' . $cond[1] . '\'' . $value . '\'' : $field . ' = \'' . $value . '\'';
 			}
-
 			// Making the where clause
-			$count = count($tmp);
-			for ($i = 0; $i < $count; $i++) {
-				// Test if element is the first i array
-				if ($i === 0) {
-					$where = $tmp[$i];
-				} else {
-					// If not first element, adding the " AND " clause
-					$where .= ' AND ' . $tmp[$i];
-				}
-			}
+			$where .= implode(' AND ', $tmp);
 			// If not an array, making where clause is by id
 		} else {
 			$where = 'id = ' . $where;
@@ -213,7 +177,6 @@ class Database
 
 		// Query Creation
 		$query = 'UPDATE ' . $table . ' SET ' . $set . ' WHERE ' . $where;
-		// No return. (return SQLStatement)
 		$this->query($query, $fields, 'update');
 	}
 }
