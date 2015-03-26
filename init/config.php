@@ -1,7 +1,7 @@
 <?php
 $config = array(
     'username' => 'root',
-    'password' => '20lr7ef',
+    'password' => '',
     'host' => 'localhost',
     'dbname' => 'projet',
     'port' => '3306',
